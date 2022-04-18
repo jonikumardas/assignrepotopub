@@ -1,12 +1,23 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Carousel } from 'react-bootstrap';
 import Footer from '../Footer/Footer';
 import img from '../../img/as10slider.jpg';
 import img1 from '../../img/ass10slideer.jpg';
 import img2 from '../../img/ass10slider.png';
 import './Header.css'
+import Service from '../../Services/Service';
+import Hooks from '../../hooks/Hooks';
+import HeaderService from '../../HeaderService/HeaderService';
 
 const Header = () => {
+  const [photos, setPhotos] = Hooks([])
+  // const [photo, setPhoto]=useState([])
+  if (photos) {
+    photos.length = 3;
+  }
+  
+ 
+  
     return (
         <div>
             <div>
@@ -47,7 +58,15 @@ const Header = () => {
   </Carousel.Item>
 </Carousel>
 
+        </div>
+        <div className='container'>
+          <div className="row" style={{justifyContent:'space-evenly'}}>
+          <h2 className='text-center p-3' id='/service'> Service photo </h2>
+          {
+            photos.map(poto => <HeaderService key={poto.id} poto={poto}></HeaderService>)
+            }
             </div>
+        </div>
             <div>
                 <Footer></Footer>
             </div>
