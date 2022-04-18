@@ -1,13 +1,55 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import google from '../img/google-logo.png';
 import git from '../img/git.png';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { useSignInWithGithub, useSignInWithGoogle} from 'react-firebase-hooks/auth'
+import { useCreateUserWithEmailAndPassword, useSignInWithGithub, useSignInWithGoogle} from 'react-firebase-hooks/auth'
 import Auth from '../ShereFolder/Firebase/Firebase.init';
 import { signOut } from 'firebase/auth';
 const Registaion = () => {
     const navigate = useNavigate();
+    const [email, setEmail] = useState('');
+    const [passwoed, setPassword] = useState('');
+    const [Repasswoed, setRePassword] = useState('');
+    
+    const [
+        createUserWithEmailAndPassword,
+        user2,
+        loading2,
+        error2,
+    ] = useCreateUserWithEmailAndPassword(Auth);
+    const enterEmail = e => {
+        setEmail(e.target.value);
+    }
+    const Enterpassword = e => {
+        setPassword(e.target.value);
+    }
+    const ReEnterpassword = e => {
+        setRePassword(e.target.value);
+    }
+    if (error2) {
+        return (
+          <div>
+            <p>Error: {error2.message}</p>
+          </div>
+        );
+      }
+      if (user2) {
+        return (
+          <div>
+            <p>Registered User: {user2.email}</p>
+          </div>
+        );
+      }
+    const Register = e => {
+        e.preventDefault();
+        if (passwoed === Repasswoed) {
+            createUserWithEmailAndPassword(email, passwoed)
+            navigate('/service')
+        
+        }    
+    }
+   
     const [signInWithGoogle, user, loading, error] = useSignInWithGoogle(Auth);
     const [signInWithGithub, user1, loading1, error1] = useSignInWithGithub(Auth);;
 
@@ -41,13 +83,14 @@ const Registaion = () => {
     return (
         <div>
            <div className='my-5 loginform'>
-            <form action="">
+            <form onSubmit={Register}>
             <h2 className='text-info text-center'> Register </h2>
                 <input  id="email" className='px-5 py-2 my-2 border-0' type="text" placeholder='Enter your name' required />
                     <br />
-                    <input  id="email" className='px-5 py-2 my-2 border-0' type="email" placeholder='Enter your email addess' required />
+                    <input onBlur={enterEmail} id="email" className='px-5 py-2 my-2 border-0' type="email" placeholder='Enter your email addess' required />
                 <br />
-                <input id="password" type="password" className='px-5 my-2 py-2 border-0' placeholder='Enter your email addess' required />
+                <input onBlur={Enterpassword} id="password" type="password" className='px-5 my-2 py-2 border-0' placeholder='Enter your email addess' required />
+                <input onBlur={ReEnterpassword} id="password" type="password" className='px-5 my-2 py-2 border-0' placeholder='Re-enter your email addess' required />
                 <br />
                 <button className='px-3 py-2 my-2 border-0' id="submit" type="submit">Register</button>
                 </form>

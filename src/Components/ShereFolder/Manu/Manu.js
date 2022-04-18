@@ -31,7 +31,7 @@ const Manu = () => {
               <Nav.Link as={Link} to="/about">About</Nav.Link>
               {
                 user ?
-                  <button onClick={handleSignOut}>Sign out</button>
+                  <button className='bg-none' onClick={handleSignOut}>Sign out</button>
                   :
                   <Nav.Link eventKey={2}as={Link} to="/login">Log In </Nav.Link>
               }
