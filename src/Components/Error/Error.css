@@ -1,0 +1,11 @@
+#container-img {
+    background-image: url(../img/as10slider.jpg);
+    background-size: cover;
+    width: 100%;
+    background-repeat: no-repeat;
+    height: 100vh;
+}
+
+#container-img h3 {
+    padding-top: 200px;
+}
