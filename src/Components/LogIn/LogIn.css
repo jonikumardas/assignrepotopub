@@ -1,0 +1,22 @@
+#email,
+#password,
+#submit {
+    border-radius: 50px;
+    background: #e0e0e0;
+    box-shadow: 20px 20px 60px #bebebe,
+        -20px -20px 60px #ffffff;
+}
+
+.loginform {
+    border-radius: 20px;
+    background: #c6f6f0e7;
+    box-shadow: 35px 35px 70px #dff5f440,
+        -35px -35px 70px #b4b6b6;
+    padding: 20px;
+    width: 320px;
+    margin: 0 auto;
+}
+
+#link {
+    cursor: pointer;
+}
