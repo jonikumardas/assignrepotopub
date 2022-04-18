@@ -1,10 +1,17 @@
 
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { signOut } from 'firebase/auth';
 import { Container, Nav, Navbar, } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import Auth from '../Firebase/Firebase.init';
+import { useAuthState } from 'react-firebase-hooks/auth'
 
 
 const Manu = () => {
+  const [user] = useAuthState(Auth);
+  const handleSignOut = () =>{
+    signOut(Auth);
+}
   return (
     <div>
       <Navbar collapseOnSelect expand="lg" bg="dark" sticky="top"  variant="dark">
@@ -21,8 +28,14 @@ const Manu = () => {
 
     </Nav>
     <Nav>
-<Nav.Link as={Link} to="/about">About</Nav.Link>
-      <Nav.Link eventKey={2}as={Link} to="/login">Log In </Nav.Link>
+              <Nav.Link as={Link} to="/about">About</Nav.Link>
+              {
+                user ?
+                  <button onClick={handleSignOut}>Sign out</button>
+                  :
+                  <Nav.Link eventKey={2}as={Link} to="/login">Log In </Nav.Link>
+              }
+      
     </Nav>
   </Navbar.Collapse>
   </Container>
