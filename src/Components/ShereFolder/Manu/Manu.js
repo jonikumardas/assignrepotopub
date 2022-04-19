@@ -14,7 +14,7 @@ const Manu = () => {
 }
   return (
     <div>
-      <Navbar collapseOnSelect expand="lg" bg="dark" sticky="top"  variant="dark">
+      <Navbar collapseOnSelect expand="lg" bg="dark" fixed="top"  variant="dark">
   <Container>
   <Navbar.Brand as={Link} to="/home"> <span className='text-info'>Jhon</span> Photo<span className='text-info'>graphy</span></Navbar.Brand>
   <Navbar.Toggle aria-controls="responsive-navbar-nav" />

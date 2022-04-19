@@ -1,22 +1,22 @@
 import React, { useState } from 'react';
-// import { Toast } from 'react-bootstrap';
-import { useAuthState, useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
-import { useNavigate } from 'react-router-dom';
+import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import { useLocation, useNavigate } from 'react-router-dom';
 import Auth from '../ShereFolder/Firebase/Firebase.init';
 import './LogIn.css';
 const LogIn = () => {
-    // const ref=useHref()
-    const auth = useAuthState(Auth);
-    const navigate = useNavigate();
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    const[error1 ,setError1]=useState('')
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [error, setError] = useState('');
     const [
-        signInWithEmailAndPassword,
+        createUserWithEmailAndPassword,
         user,
         loading,
-        error,
-    ] = useSignInWithEmailAndPassword(Auth);
+        error1,
+      ] = useCreateUserWithEmailAndPassword(Auth);
+   
+    const navigate = useNavigate();
+    const location = useLocation();
+    const from=location.state?.from?.pathname|| "/"
     const navigateRegister = e => {
         navigate('/registation');
 
@@ -29,18 +29,13 @@ const LogIn = () => {
     const hendelpassword = e => {
         setPassword(e.target.value);
     }
+    if (user) {
+        navigate(from, { replace: true });
+        
+    }
     const hendelsubmit = e => {
         e.preventDefault();
-        if (user===auth.user) {
-            signInWithEmailAndPassword(email, password);
-            navigate('/service');
-            return;
-        }
-        else {
-            setError1("please enter right information");
-            return;
-        }
-        
+        createUserWithEmailAndPassword(email, password)
     }
     
     return (
@@ -52,7 +47,7 @@ const LogIn = () => {
                 <br />
                 <input onBlur={hendelpassword} id="password" type="password" className='px-5 my-2 py-2 border-0' placeholder='Enter your email addess' required />
                     <br />
-                    <p className='text-danger'>{error1}</p>
+                    <p className='text-danger'>{error}</p>
                     <button className='px-3 py-2 my-2 border-0' id="submit" type="submit">Log in</button>
                 </form>
                 <p> Don't have account? <span id='link' onClick={navigateRegister} className='text-danger mt-2'>Please Register</span></p>

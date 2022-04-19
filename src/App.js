@@ -18,17 +18,16 @@ function App() {
       <Routes>
         <Route path='/' element={<Header></Header>}></Route>
         <Route path='/home' element={<Header></Header>}></Route>
-        <Route path='/service' element={
-         
+        <Route path='/service' element={<RequireAuth>
           <Service></Service>
-         
+        </RequireAuth>
+          
         }></Route>
         <Route path='/chackout' element={<ChackOut></ChackOut>}></Route>
         <Route path='/blog' element={<Blog></Blog>}></Route>
         <Route path='/about' element={<About></About>}></Route>
         <Route path='/login' element={<LogIn></LogIn>}></Route>
         <Route path='/registation' element={<Registaion></Registaion>}></Route>
-        
         <Route path='*' element={<Error></Error>}></Route>
       </Routes>
     </div>
