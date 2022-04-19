@@ -8,23 +8,14 @@ import './Header.css';
 import image from '../../img/camara10 (2).jpg';
 import Hooks from '../../hooks/Hooks';
 import HeaderService from '../../HeaderService/HeaderService';
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 
 const Header = () => {
-  const nevigete=useNavigate()
+  // const nevigete=useNavigate()
   const [photos, setPhotos] = Hooks([])
-  // const[photo,setPhoto]=useState([])
   if (photos) {
     photos.length = 3;
   }
-//   const handleAddCard = () => {
-//     console.log("product");
-    
-// }
-  
- 
-  
     return (
         <div>
             <div>

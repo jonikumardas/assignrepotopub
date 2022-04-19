@@ -1,4 +1,9 @@
 # Getting Started with Create React App
+#Jhon photgraphy
+* I have commit 9
+* autintication set up
+* private router
+*
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 

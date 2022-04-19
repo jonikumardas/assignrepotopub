@@ -11,13 +11,17 @@ const Registaion = () => {
     const [email, setEmail] = useState('');
     const [passwoed, setPassword] = useState('');
     const [Repasswoed, setRePassword] = useState('');
-    
+    const [signInWithGoogle, user, loading, error] = useSignInWithGoogle(Auth);
+    const [signInWithGithub, user1, loading1, error1] = useSignInWithGithub(Auth);
     const [
         createUserWithEmailAndPassword,
         user2,
         loading2,
         error2,
-    ] = useCreateUserWithEmailAndPassword(Auth);
+  ] = useCreateUserWithEmailAndPassword(Auth);
+  const navigateLogIn = e => {
+    navigate('/login');
+}
     const enterEmail = e => {
         setEmail(e.target.value);
     }
@@ -44,15 +48,12 @@ const Registaion = () => {
     const Register = e => {
         e.preventDefault();
         if (passwoed === Repasswoed) {
-            createUserWithEmailAndPassword(email, passwoed)
-            navigate('/service')
+          createUserWithEmailAndPassword(email, passwoed);
+            navigate('/service');  
         
         }    
     }
    
-    const [signInWithGoogle, user, loading, error] = useSignInWithGoogle(Auth);
-    const [signInWithGithub, user1, loading1, error1] = useSignInWithGithub(Auth);;
-
     if (error||error1) {
         return (
           <div>
@@ -74,11 +75,6 @@ const Registaion = () => {
     const logout = () => {
         signOut(Auth);
       };
-
-   
-    const navigateLogIn = e => {
-        navigate('/login');
-    }
 
     return (
         <div>

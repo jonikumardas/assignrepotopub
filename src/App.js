@@ -6,6 +6,7 @@ import ChackOut from './Components/ChackOut/ChackOut';
 import Error from './Components/Error/Error';
 import LogIn from './Components/LogIn/LogIn';
 import Registaion from './Components/Registation/Registaion';
+import RequireAuth from './Components/RequireAuth/RequireAuth';
 import Service from './Components/Services/Service';
 import Header from './Components/ShereFolder/Header/Header';
 import Manu from './Components/ShereFolder/Manu/Manu';
@@ -17,7 +18,11 @@ function App() {
       <Routes>
         <Route path='/' element={<Header></Header>}></Route>
         <Route path='/home' element={<Header></Header>}></Route>
-        <Route path='/service' element={<Service></Service>}></Route>
+        <Route path='/service' element={
+         
+          <Service></Service>
+         
+        }></Route>
         <Route path='/chackout' element={<ChackOut></ChackOut>}></Route>
         <Route path='/blog' element={<Blog></Blog>}></Route>
         <Route path='/about' element={<About></About>}></Route>
