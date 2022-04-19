@@ -13,7 +13,7 @@ const Manu = () => {
     signOut(Auth);
 }
   return (
-    <div>
+    <div className="mb-5">
       <Navbar collapseOnSelect expand="lg" bg="dark" fixed="top"  variant="dark">
   <Container>
   <Navbar.Brand as={Link} to="/home"> <span className='text-info'>Jhon</span> Photo<span className='text-info'>graphy</span></Navbar.Brand>
