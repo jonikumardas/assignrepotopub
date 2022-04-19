@@ -6,11 +6,13 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { useCreateUserWithEmailAndPassword, useSignInWithGithub, useSignInWithGoogle} from 'react-firebase-hooks/auth'
 import Auth from '../ShereFolder/Firebase/Firebase.init';
 import { signOut } from 'firebase/auth';
+import { Toast } from 'react-bootstrap';
 const Registaion = () => {
     const navigate = useNavigate();
     const [email, setEmail] = useState('');
     const [passwoed, setPassword] = useState('');
-    const [Repasswoed, setRePassword] = useState('');
+  const [Repasswoed, setRePassword] = useState('');
+  const [error4, seterror4]=useState('')
     const [signInWithGoogle, user, loading, error] = useSignInWithGoogle(Auth);
     const [signInWithGithub, user1, loading1, error1] = useSignInWithGithub(Auth);
     const [
@@ -49,17 +51,20 @@ const Registaion = () => {
         e.preventDefault();
         if (passwoed === Repasswoed) {
           createUserWithEmailAndPassword(email, passwoed);
-            navigate('/service');  
-        
-        }    
-    }
-   
-    if (error||error1) {
-        return (
-          <div>
-            <p>Error: {error.message}</p>
-          </div>
-        );
+          navigate('/service');  
+          return;
+      }
+      if (passwoed !== Repasswoed) {
+        seterror4( <Toast>
+          <Toast.Header>
+                 <img src="holder.js/20x20?text=%20" className="rounded me-2" alt="" />
+                 <strong className="me-auto">Bootstrap</strong>
+                 <small>11 mins ago</small>
+             </Toast.Header>
+             <Toast.Body>Hello, you have no accout, page says to register </Toast.Body>
+         </Toast>)
+        return;
+      }
     }
     if (user||user1) {
         return (
@@ -73,7 +78,7 @@ const Registaion = () => {
         );
     }
     const logout = () => {
-        signOut(Auth);
+      signOut(Auth);
       };
 
     return (
@@ -86,7 +91,8 @@ const Registaion = () => {
                     <input onBlur={enterEmail} id="email" className='px-5 py-2 my-2 border-0' type="email" placeholder='Enter your email addess' required />
                 <br />
                 <input onBlur={Enterpassword} id="password" type="password" className='px-5 my-2 py-2 border-0' placeholder='Enter your email addess' required />
-                <input onBlur={ReEnterpassword} id="password" type="password" className='px-5 my-2 py-2 border-0' placeholder='Re-enter your email addess' required />
+            <input onBlur={ReEnterpassword} id="password" type="password" className='px-5 my-2 py-2 border-0' placeholder='Re-enter your email addess' required />
+            <p className='text-danger'>{error4}</p>
                 <br />
                 <button className='px-3 py-2 my-2 border-0' id="submit" type="submit">Register</button>
                 </form>

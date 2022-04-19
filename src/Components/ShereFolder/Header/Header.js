@@ -8,10 +8,10 @@ import './Header.css';
 import image from '../../img/camara10 (2).jpg';
 import Hooks from '../../hooks/Hooks';
 import HeaderService from '../../HeaderService/HeaderService';
+import PhotoGrap from '../../photograper/PhotoGrap';
 // import { useNavigate } from 'react-router-dom';
 
 const Header = () => {
-  // const nevigete=useNavigate()
   const [photos, setPhotos] = Hooks([])
   if (photos) {
     photos.length = 3;
@@ -56,6 +56,9 @@ const Header = () => {
   </Carousel.Item>
 </Carousel>
 
+        </div>
+        <div className='my-5'>
+          <PhotoGrap></PhotoGrap>
         </div>
         <div className='container'>
           <div className="row" style={{justifyContent:'space-evenly'}}>

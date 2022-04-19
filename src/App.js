@@ -28,6 +28,7 @@ function App() {
         <Route path='/about' element={<About></About>}></Route>
         <Route path='/login' element={<LogIn></LogIn>}></Route>
         <Route path='/registation' element={<Registaion></Registaion>}></Route>
+        
         <Route path='*' element={<Error></Error>}></Route>
       </Routes>
     </div>
